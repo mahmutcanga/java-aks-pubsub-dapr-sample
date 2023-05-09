@@ -39,7 +39,7 @@
 				"vscjava.vscode-spring-boot-dashboard",
 				"github.copilot",
 				"ms-kubernetes-tools.vscode-kubernetes-tools",
-				"SonarSource.sonarlint-vscode"				
+				"SonarSource.sonarlint-vscode"
 			]
 		}
 	}
