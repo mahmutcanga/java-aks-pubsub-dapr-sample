@@ -313,45 +313,6 @@ If you'd like to create a clean state and start over, you can run the following 
 make clean
 ```
 
-## Implementation Status
-
-- [X] Public API endpoint receives new money transfer request. [TRANSFER(Sender: A, Amount: 100, Receiver:B)]
-- [X] Request is published to Redis (pub/sub)
-- [X] Deposit workflow starts
-  - [X] Fraud service checks the legitimacy of the operation and triggers [VALIDATED(Sender: A, Amount: 100, Receiver:B)]
-  - [X] Account service checks if `Sender` has enough funds and triggers [APPROVED(Sender: A, Amount: 100, Receiver: B)]
-- [X] Public API can be used to check if there is a confirmation of the money transfer request.
-
-## How To
-
-Following are practical operator guides for common tasks.
-
-### How to Operate Redis
-
-To connect to Redis, you can use the following command:
-
-```bash
-kubectl exec -it redis-master-0 -- redis-cli
-```
-
-To get Redis password:
-
-```bash
-kubectl get secret --namespace default redis -o jsonpath="{.data.redis-password}" | base64 --decode
-```
-
-To AUTH with Redis instance for further operations
-
-```bash
-AUTH <password>
-```
-
-Get all keys in the state store:
-
-```bash
-keys *
-```
-
 ## Azure Deployment
 
 It's possible to deploy this application through [Azure Developer (azd) CLI](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/overview). `azd` is responsible for resource provision and application deployment requiring minimal interaction with Azure Portal.
@@ -832,4 +793,34 @@ Deploying services (azd deploy)
 SUCCESS: Your application was deployed to Azure in 12 minutes 13 seconds.
 You can view the resources created under the resource group rg-java-banking-pubsub-dapr-sample-dev in Azure Portal:
 https://portal.azure.com/#@/resource/subscriptions/a3ed6c04-563f-4855-ac84-bdf1e5fbc3fc/resourceGroups/rg-java-banking-pubsub-dapr-sample-dev/overview
+```
+
+## How To
+
+Following are practical operator guides for common tasks.
+
+### How to Operate Redis
+
+To connect to Redis, you can use the following command:
+
+```bash
+kubectl exec -it redis-master-0 -- redis-cli
+```
+
+To get Redis password:
+
+```bash
+kubectl get secret --namespace default redis -o jsonpath="{.data.redis-password}" | base64 --decode
+```
+
+To AUTH with Redis instance for further operations
+
+```bash
+AUTH <password>
+```
+
+Get all keys in the state store:
+
+```bash
+keys *
 ```
