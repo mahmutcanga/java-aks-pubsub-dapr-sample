@@ -540,7 +540,7 @@ spec:
             - name: REDIS_REPLICATION_MODE
               value: replica
             - name: REDIS_MASTER_HOST
-              value: redis-master-0.redis-headless.${DAPR_NAMESPACE}.svc.cluster.local
+              value: redis-master-0.redis-headless.${AZURE_ENV_NAME}.svc.cluster.local
             - name: REDIS_MASTER_PORT_NUMBER
               value: "6379"
             - name: ALLOW_EMPTY_PASSWORD
